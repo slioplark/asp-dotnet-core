@@ -3,7 +3,7 @@
 @inject IHtmlLocalizer<SharedResource> SharedLocalizer
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "IndexOfView";
 }
 
 @*Result*@
@@ -67,10 +67,10 @@ SharedResource.en-US.resx
 </pre>
 
 @*Step 4*@
-<h2>Inject IHtmlLocalizer<SharedResource> in View</h2>
+<h2>Inject IHtmlLocalizer&lt;SharedResource> in View</h2>
 <pre>
 @@using Microsoft.AspNetCore.Mvc.Localization
-@@inject IHtmlLocalizer<SharedResource> SharedLocalizer
+@@inject IHtmlLocalizer&lt;SharedResource> SharedLocalizer
 </pre>
 
 @*Step 5*@

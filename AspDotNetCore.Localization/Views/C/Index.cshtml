@@ -1,0 +1,28 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+
+@*Result*@
+<h2>Result</h2>
+
+<h3>
+    <a href="@Context.Request.Path"><input type="button" class="btn btn-primary" value="中文" /></a>
+    <a href="?culture=en-US"><input type="button" class="btn btn-primary" value="英文" /></a>
+</h3>
+
+<h3>
+    @ViewData["Language"] @ViewData["Translation"]
+</h3>
+
+<ul>
+    <li><h4>@ViewData["One"]</h4></li>
+    <li><h4>@ViewData["Two"]</h4></li>
+    <li><h4>@ViewData["Three"]</h4></li>
+    <li><h4>@ViewData["Four"]</h4></li>
+    <li><h4>@ViewData["Five"]</h4></li>
+    <li><h4>@ViewData["Six"]</h4></li>
+    <li><h4>@ViewData["Seven"]</h4></li>
+    <li><h4>@ViewData["Eight"]</h4></li>
+    <li><h4>@ViewData["Nine"]</h4></li>
+    <li><h4>@ViewData["Ten"]</h4></li>
+</ul>
