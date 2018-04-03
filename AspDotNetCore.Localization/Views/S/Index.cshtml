@@ -6,24 +6,75 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>
+@*Result*@
+<h2>Result</h2>
+
+<h3>
     <a href="@Context.Request.Path"><input type="button" class="btn btn-primary" value="中文" /></a>
     <a href="?culture=en-US"><input type="button" class="btn btn-primary" value="英文" /></a>
-</h2>
+</h3>
 
-<h2>
+<h3>
     @SharedLocalizer["Language"] @SharedLocalizer["Translation"]
-</h2>
+</h3>
 
 <ul>
-    <li>@SharedLocalizer["One"]</li>
-    <li>@SharedLocalizer["Two"]</li>
-    <li>@SharedLocalizer["Three"]</li>
-    <li>@SharedLocalizer["Four"]</li>
-    <li>@SharedLocalizer["Five"]</li>
-    <li>@SharedLocalizer["Six"]</li>
-    <li>@SharedLocalizer["Seven"]</li>
-    <li>@SharedLocalizer["Eight"]</li>
-    <li>@SharedLocalizer["Nine"]</li>
-    <li>@SharedLocalizer["Ten"]</li>
+    <li><h4>@SharedLocalizer["One"]</h4></li>
+    <li><h4>@SharedLocalizer["Two"]</h4></li>
+    <li><h4>@SharedLocalizer["Three"]</h4></li>
+    <li><h4>@SharedLocalizer["Four"]</h4></li>
+    <li><h4>@SharedLocalizer["Five"]</h4></li>
+    <li><h4>@SharedLocalizer["Six"]</h4></li>
+    <li><h4>@SharedLocalizer["Seven"]</h4></li>
+    <li><h4>@SharedLocalizer["Eight"]</h4></li>
+    <li><h4>@SharedLocalizer["Nine"]</h4></li>
+    <li><h4>@SharedLocalizer["Ten"]</h4></li>
 </ul>
+
+@*Step 1*@
+<h2>Add Localization Service</h2>
+<pre>
+services.AddLocalization(options => options.ResourcesPath = "Resources");
+
+services.AddMvc()
+    .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
+    .AddDataAnnotationsLocalization();
+</pre>
+
+@*Step 2*@
+<h2>Set Localization</h2>
+<pre>
+var supportedCultures = new[]
+{
+    new CultureInfo("zh-TW"),
+    new CultureInfo("en-US"),
+};
+
+app.UseRequestLocalization(new RequestLocalizationOptions
+{
+    DefaultRequestCulture = new RequestCulture("zh-TW"),
+    SupportedCultures = supportedCultures,
+    SupportedUICultures = supportedCultures
+});
+</pre>
+
+@*Step 3*@
+<h2>Add SharedResource Class(.cs) & SharedResource File(.resx)</h2>
+<pre>
+SharedResource.cs
+SharedResource.zh-TW.resx
+SharedResource.en-US.resx
+</pre>
+
+@*Step 4*@
+<h2>Inject SharedLocalizer in View</h2>
+<pre>
+@@using Microsoft.AspNetCore.Mvc.Localization
+@@inject IHtmlLocalizer<SharedResource> SharedLocalizer
+</pre>
+
+@*Step 5*@
+<h2>Use @@SharedLocalizer in View</h2>
+<pre>
+@@SharedLocalizer["Language"]
+</pre>
