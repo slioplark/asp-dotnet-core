@@ -117,7 +117,40 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Welcome" xml:space="preserve">
-    <value>歡迎</value>
+  <data name="Eight" xml:space="preserve">
+    <value>捌</value>
+  </data>
+  <data name="Five" xml:space="preserve">
+    <value>伍</value>
+  </data>
+  <data name="Four" xml:space="preserve">
+    <value>肆</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>中文</value>
+  </data>
+  <data name="Nine" xml:space="preserve">
+    <value>玖</value>
+  </data>
+  <data name="One" xml:space="preserve">
+    <value>壹</value>
+  </data>
+  <data name="Seven" xml:space="preserve">
+    <value>柒</value>
+  </data>
+  <data name="Six" xml:space="preserve">
+    <value>陸</value>
+  </data>
+  <data name="Ten" xml:space="preserve">
+    <value>拾</value>
+  </data>
+  <data name="Three" xml:space="preserve">
+    <value>參</value>
+  </data>
+  <data name="Translation" xml:space="preserve">
+    <value>翻譯</value>
+  </data>
+  <data name="Two" xml:space="preserve">
+    <value>貳</value>
   </data>
 </root>

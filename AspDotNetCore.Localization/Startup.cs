@@ -24,11 +24,26 @@ namespace AspDotNetCore.Localization
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // add localization service
             services.AddLocalization(options => options.ResourcesPath = "Resources");
 
             services.AddMvc()
+                // use localization in view
                 .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
+                // use localization in model
                 .AddDataAnnotationsLocalization();
+
+            //services.Configure<RequestLocalizationOptions>(options =>
+            //{
+            //    var supportedCultures = new List<CultureInfo>
+            //    {
+            //        new CultureInfo("zh-TW"),
+            //        new CultureInfo("en-US"),
+            //    };
+            //    options.DefaultRequestCulture = new RequestCulture("zh-TW");
+            //    options.SupportedCultures = supportedCultures;
+            //    options.SupportedUICultures = supportedCultures;
+            //});
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,12 +59,12 @@ namespace AspDotNetCore.Localization
                 app.UseExceptionHandler("/Home/Error");
             }
 
+            // set localization
             var supportedCultures = new[]
             {
                 new CultureInfo("zh-TW"),
                 new CultureInfo("en-US"),
             };
-
             app.UseRequestLocalization(new RequestLocalizationOptions
             {
                 DefaultRequestCulture = new RequestCulture("zh-TW"),
