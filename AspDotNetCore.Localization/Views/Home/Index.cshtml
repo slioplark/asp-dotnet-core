@@ -1,29 +1,8 @@
-﻿@using Microsoft.AspNetCore.Mvc.Localization
-
-@inject IHtmlLocalizer<SharedResource> SharedLocalizer
-
-@{
+﻿@{
     ViewData["Title"] = "Home Page";
 }
 
-<h2>
-    <a href="@Context.Request.Path"><input type="button" class="btn btn-primary" value="中文" /></a>
-    <a href="?culture=en-US"><input type="button" class="btn btn-primary" value="英文" /></a>
-</h2>
-
-<h2>
-    @SharedLocalizer["Language"] @SharedLocalizer["Translation"]
-</h2>
-
-<ul>
-    <li>@SharedLocalizer["One"]</li>
-    <li>@SharedLocalizer["Two"]</li>
-    <li>@SharedLocalizer["Three"]</li>
-    <li>@SharedLocalizer["Four"]</li>
-    <li>@SharedLocalizer["Five"]</li>
-    <li>@SharedLocalizer["Six"]</li>
-    <li>@SharedLocalizer["Seven"]</li>
-    <li>@SharedLocalizer["Eight"]</li>
-    <li>@SharedLocalizer["Nine"]</li>
-    <li>@SharedLocalizer["Ten"]</li>
-</ul>
+<a asp-controller="S" asp-action="Index"><h2>Localization in <strong>Shared</strong></h2></a>
+<a asp-controller="V" asp-action="Index"><h2>Localization in <strong>View</strong></h2></a>
+<a asp-controller="C" asp-action="Index"><h2>Localization in <strong>Controller</strong></h2></a>
+<a asp-controller="M" asp-action="Index"><h2>Localization in <strong>Model</strong></h2></a>
