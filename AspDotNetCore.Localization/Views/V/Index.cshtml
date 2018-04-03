@@ -1,6 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Mvc.Localization
 
-@inject IHtmlLocalizer<SharedResource> SharedLocalizer
+@inject IViewLocalizer localizer
 
 @{
     ViewData["Title"] = "Index";
@@ -15,20 +15,20 @@
 </h3>
 
 <h3>
-    @SharedLocalizer["Language"] @SharedLocalizer["Translation"]
+    @localizer["Language"] @localizer["Translation"]
 </h3>
 
 <ul>
-    <li><h4>@SharedLocalizer["One"]</h4></li>
-    <li><h4>@SharedLocalizer["Two"]</h4></li>
-    <li><h4>@SharedLocalizer["Three"]</h4></li>
-    <li><h4>@SharedLocalizer["Four"]</h4></li>
-    <li><h4>@SharedLocalizer["Five"]</h4></li>
-    <li><h4>@SharedLocalizer["Six"]</h4></li>
-    <li><h4>@SharedLocalizer["Seven"]</h4></li>
-    <li><h4>@SharedLocalizer["Eight"]</h4></li>
-    <li><h4>@SharedLocalizer["Nine"]</h4></li>
-    <li><h4>@SharedLocalizer["Ten"]</h4></li>
+    <li><h4>@localizer["One"]</h4></li>
+    <li><h4>@localizer["Two"]</h4></li>
+    <li><h4>@localizer["Three"]</h4></li>
+    <li><h4>@localizer["Four"]</h4></li>
+    <li><h4>@localizer["Five"]</h4></li>
+    <li><h4>@localizer["Six"]</h4></li>
+    <li><h4>@localizer["Seven"]</h4></li>
+    <li><h4>@localizer["Eight"]</h4></li>
+    <li><h4>@localizer["Nine"]</h4></li>
+    <li><h4>@localizer["Ten"]</h4></li>
 </ul>
 
 @*Step 1*@
@@ -59,22 +59,23 @@ app.UseRequestLocalization(new RequestLocalizationOptions
 </pre>
 
 @*Step 3*@
-<h2>Add SharedResource Class(.cs) & SharedResource File(.resx)</h2>
+<h2>Add Resource File(.resx)</h2>
 <pre>
-SharedResource.cs
-SharedResource.zh-TW.resx
-SharedResource.en-US.resx
+Views
+    |---V
+        |---Index.en-US.resx
+        |---Index.zh-TW.resx           
 </pre>
 
 @*Step 4*@
-<h2>Inject IHtmlLocalizer<SharedResource> in View</h2>
+<h2>Inject IViewLocalizer in View</h2>
 <pre>
 @@using Microsoft.AspNetCore.Mvc.Localization
-@@inject IHtmlLocalizer<SharedResource> SharedLocalizer
+@@inject IViewLocalizer localizer
 </pre>
 
 @*Step 5*@
-<h2>Use @@SharedLocalizer in View</h2>
+<h2>Use @@localizer in View</h2>
 <pre>
-@@SharedLocalizer["Language"]
+@@localizer["Language"]
 </pre>
