@@ -26,3 +26,55 @@
     <li><h4>@ViewData["Nine"]</h4></li>
     <li><h4>@ViewData["Ten"]</h4></li>
 </ul>
+
+@*Step 1*@
+<h2>Add Localization Service</h2>
+<pre>
+services.AddLocalization(options => options.ResourcesPath = "Resources");
+
+services.AddMvc()
+    .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
+    .AddDataAnnotationsLocalization();
+</pre>
+
+@*Step 2*@
+<h2>Set Localization</h2>
+<pre>
+var supportedCultures = new[]
+{
+    new CultureInfo("zh-TW"),
+    new CultureInfo("en-US"),
+};
+
+app.UseRequestLocalization(new RequestLocalizationOptions
+{
+    DefaultRequestCulture = new RequestCulture("zh-TW"),
+    SupportedCultures = supportedCultures,
+    SupportedUICultures = supportedCultures
+});
+</pre>
+
+@*Step 3*@
+<h2>Add Resource File(.resx)</h2>
+<pre>
+Controllers
+          |---CController.en-US.resx
+          |---CController.zh-TW.resx           
+</pre>
+
+@*Step 4*@
+<h2>DI in Controller</h2>
+<pre>
+private readonly IStringLocalizer&lt;CController> _localizer;
+
+public CController(IStringLocalizer&lt;CController> localizer)
+{
+    _localizer = localizer;
+}
+</pre>
+
+@*Step 5*@
+<h2>Use _localizer in Controller</h2>
+<pre>
+@@ViewData["Language"] = _localizer["Language"]
+</pre>
