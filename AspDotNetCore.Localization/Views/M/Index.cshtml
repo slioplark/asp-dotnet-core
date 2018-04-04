@@ -1,9 +1,11 @@
-﻿@{
+﻿@model LocalizationViewModel
+
+@{
     ViewData["Title"] = "Index";
 }
 
 @*Result*@
-<h2>Controller Result</h2>
+<h2>Model Result</h2>
 
 <h3>
     <a href="@Context.Request.Path"><input type="button" class="btn btn-primary" value="中文" /></a>
@@ -11,20 +13,20 @@
 </h3>
 
 <h3>
-    @ViewData["Language"] @ViewData["Translation"]
+    @Html.DisplayNameFor(m => m.Language) @Html.DisplayNameFor(m => m.Translation)
 </h3>
 
 <ul>
-    <li><h4>@ViewData["One"]</h4></li>
-    <li><h4>@ViewData["Two"]</h4></li>
-    <li><h4>@ViewData["Three"]</h4></li>
-    <li><h4>@ViewData["Four"]</h4></li>
-    <li><h4>@ViewData["Five"]</h4></li>
-    <li><h4>@ViewData["Six"]</h4></li>
-    <li><h4>@ViewData["Seven"]</h4></li>
-    <li><h4>@ViewData["Eight"]</h4></li>
-    <li><h4>@ViewData["Nine"]</h4></li>
-    <li><h4>@ViewData["Ten"]</h4></li>
+    <li><h4>@Html.DisplayNameFor(m => m.One)</h4></li>
+    <li><h4>@Html.DisplayNameFor(m => m.Two)</h4></li>
+    <li><h4>@Html.DisplayNameFor(m => m.Three)</h4></li>
+    <li><h4>@Html.DisplayNameFor(m => m.Four)</h4></li>
+    <li><h4>@Html.DisplayNameFor(m => m.Five)</h4></li>
+    <li><h4>@Html.DisplayNameFor(m => m.Six)</h4></li>
+    <li><h4>@Html.DisplayNameFor(m => m.Seven)</h4></li>
+    <li><h4>@Html.DisplayNameFor(m => m.Eight)</h4></li>
+    <li><h4>@Html.DisplayNameFor(m => m.Nine)</h4></li>
+    <li><h4>@Html.DisplayNameFor(m => m.Ten)</h4></li>
 </ul>
 
 @*Step 1*@
@@ -57,24 +59,20 @@ app.UseRequestLocalization(new RequestLocalizationOptions
 @*Step 3*@
 <h2>Add Resource File(.resx)</h2>
 <pre>
-Controllers
-          |---CController.en-US.resx
-          |---CController.zh-TW.resx           
+Models
+     |---LocalizationViewModel.en-US.resx
+     |---LocalizationViewModel.zh-TW.resx 
 </pre>
 
 @*Step 4*@
-<h2>DI in Controller</h2>
+<h2>DataAnnotations in Model</h2>
 <pre>
-private readonly IStringLocalizer&lt;CController> _localizer;
-
-public CController(IStringLocalizer&lt;CController> localizer)
-{
-    _localizer = localizer;
-}
+[Display(Name = "Language")]
+public string Language { get; set; }
 </pre>
 
 @*Step 5*@
-<h2>Use _localizer in Controller</h2>
+<h2>Use @@Html.DisplayNameFor in View</h2>
 <pre>
-@@ViewData["Language"] = _localizer["Language"]
+@@Html.DisplayNameFor(m => m.Language)
 </pre>
