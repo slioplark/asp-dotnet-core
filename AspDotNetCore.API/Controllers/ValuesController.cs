@@ -6,7 +6,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AspDotNetCore.API.Controllers
 {
-    [Route("api/[controller]")]
+    /// <summary>
+    /// 資料控制器
+    /// </summary>
+    [Route("api/[controller]/[action]")]
     public class ValuesController : Controller
     {
         /// <summary>
@@ -14,7 +17,7 @@ namespace AspDotNetCore.API.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<string> List()
         {
             return new string[] { "value1", "value2" };
         }
@@ -25,7 +28,7 @@ namespace AspDotNetCore.API.Controllers
         /// <param name="id">唯一識別號</param>
         /// <returns></returns>
         [HttpGet("{id}")]
-        public string Get(int id)
+        public string Data(int id)
         {
             return "value";
         }
@@ -35,7 +38,7 @@ namespace AspDotNetCore.API.Controllers
         /// </summary>
         /// <param name="value">資料</param>
         [HttpPost]
-        public void Post([FromBody]string value)
+        public void Create([FromBody]string value)
         {
         }
 
@@ -45,7 +48,7 @@ namespace AspDotNetCore.API.Controllers
         /// <param name="id">唯一識別號</param>
         /// <param name="value">資料</param>
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        public void Update(int id, [FromBody]string value)
         {
         }
 
