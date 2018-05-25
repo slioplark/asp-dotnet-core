@@ -10,6 +10,7 @@ namespace AspDotNetCore.API.Controllers
     /// 資料控制器
     /// </summary>
     [Route("api/[controller]/[action]")]
+    [Produces("application/json")]
     public class ValuesController : Controller
     {
         /// <summary>
