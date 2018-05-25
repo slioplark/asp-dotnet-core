@@ -12,11 +12,11 @@ namespace AspDotNetCore.API.Middlewares
     public static class SwaggerMiddleware
     {
         /// <summary>
-        /// Add SwaggerGen
+        /// Add Swagger
         /// </summary>
         /// <param name="services"></param>
         /// <returns></returns>
-        public static void AddSwaggerGen(this IServiceCollection services)
+        public static void AddSwaggerMiddleware(this IServiceCollection services)
         {
             var xmlFile = Path.Combine(PlatformServices.Default.Application.ApplicationBasePath, "AspDotNetCore.API.xml");
             services.AddSwaggerGen(c =>
@@ -36,19 +36,9 @@ namespace AspDotNetCore.API.Middlewares
         /// Use Swagger
         /// </summary>
         /// <param name="app"></param>
-        /// <returns></returns>
-        public static void UseSwagger(this IApplicationBuilder app)
+        public static void UseSwaggerMiddleware(this IApplicationBuilder app)
         {
-            app.UseSwagger(c => { });
-        }
-
-        /// <summary>
-        /// Use SwaggerUI
-        /// </summary>
-        /// <param name="app"></param>
-        /// <returns></returns>
-        public static void UseSwaggerUI(this IApplicationBuilder app)
-        {
+            app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "RESTful API v1");

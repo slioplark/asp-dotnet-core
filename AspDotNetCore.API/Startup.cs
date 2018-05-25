@@ -19,7 +19,7 @@ namespace AspDotNetCore.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddSwaggerGen();
+            services.AddSwaggerMiddleware();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -31,8 +31,7 @@ namespace AspDotNetCore.API
             }
 
             app.UseMvc();
-            app.UseSwagger();
-            app.UseSwaggerUI();
+            app.UseSwaggerMiddleware();
         }
     }
 }
