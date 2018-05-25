@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
@@ -8,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Microsoft.Extensions.PlatformAbstractions;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace AspDotNetCore.API
@@ -33,6 +35,8 @@ namespace AspDotNetCore.API
                     Version = "1.0.0",
                     Description = "This is ASP.NET Core RESTful API Sample.",
                 });
+
+                c.IncludeXmlComments(Path.Combine(PlatformServices.Default.Application.ApplicationBasePath, "AspDotNetCore.API.xml"));
             });
         }
 
@@ -48,7 +52,7 @@ namespace AspDotNetCore.API
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "RESTful API v1.0.0");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "RESTful API v1");
             });
         }
     }
